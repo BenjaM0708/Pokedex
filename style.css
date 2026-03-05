@@ -1,5 +1,200 @@
+:root {
+
+   --color-electrical: yellow;
+   --color-fire: rgb(238, 105, 61);
+   --color-poison: rgb(189, 98, 199);
+   --color-plant: #35cc35;
+   --color-bug: rgb(103, 146, 47);
+   --color-fairy: pink;
+   --color-normal: rgb(138, 120, 120);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Jersey+15&display=swap');
+
 * {
     margin: 0;
     padding: 0;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
 }
 
+body {
+    background-image: radial-gradient(rgba(235, 232, 232, 0), rgba(226, 250, 89, 0.373) 98%), url(/Media/container_bg.png);
+    padding: 1rem;
+}
+
+/*Logo and Animation*/
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-top: 1rem;
+    
+}
+
+div .pokeball {
+    height: 9rem;
+    width: 9rem;
+    animation: pokeball-move 1.5s ease-in-out forwards;
+    position: relative;
+    z-index: 10;
+}
+
+@keyframes pokeball-move {
+    from {
+        transform: translateY(20px);
+         opacity: 20%;
+    }
+
+    to {
+        transform: translateY(-5.8rem);
+    }
+    
+}
+
+div .pokelogo {
+    position: relative;
+    width: 40rem;
+    animation: poke-move 1.5s ease-in-out forwards;
+}
+
+@keyframes poke-move {
+   from {
+    opacity: 20%;
+    transform: translateX(-20%);
+  }
+
+  to {
+    
+  }
+}
+
+/*Types*/
+
+.type-style {
+    padding: 0.3rem 0.6rem;
+    border-radius: 50px;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-family: "Jersey 15", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 0.85rem;
+}
+
+.electrical {
+    background-color: var(--color-electrical);
+}
+
+.plant {
+    background-color: var(--color-plant);
+}
+
+.fairy {
+    background-color: var(--color-fairy);
+}
+
+.fire {
+    background-color: var(--color-fire);
+}
+
+.bug {
+    background-color: var(--color-bug);
+}
+
+.poison {
+    background-color: var(--color-poison);
+}
+
+.normal {
+    background-color: var(--color-normal);
+}
+
+/*Structure*/
+
+#cards-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem; 
+    justify-items: center;  
+    
+}
+
+@media (min-width: 768px) {
+    
+    #cards-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;   
+    }
+}
+
+@media (min-width: 1024px){
+
+     #cards-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;   
+    }
+}
+
+/*Cards Styles*/
+
+.poke-card {
+    width: max-content;
+    display: inline-block;
+    background: radial-gradient(rgb(226, 222, 216), rgb(171, 168, 162));
+    border-radius: 5%;
+    margin: 0.2rem;
+    transition: 0.27s ease-in-out;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.poke-card:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+    box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
+}
+
+#cards-container .img-container {
+    background: radial-gradient(rgba(165, 186, 191, 0.988), rgba(89, 124, 133, 0.988));
+    border-radius: 5% 5% 0% 0%;
+    transition: filter 0.5s ease-in-out;
+}
+
+#cards-container .img-container:hover {
+    filter: brightness(0.9);
+}
+
+#cards-container img {
+    transition: all 0.5s ease-in-out;
+}
+
+#cards-container img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+.poke-card .number {
+    font-family: 'Frankln Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.2rem;
+}
+
+.poke-card .poke-name {
+    padding: 0.1rem 0.5rem;
+    font-style: normal;
+    font-size: 1.2rem;
+}
+
+.poke-card .type-container {
+    display: inline-flex;
+    padding: 0.5rem 0.5rem;
+    gap: 0.5rem;
+}

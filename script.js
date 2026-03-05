@@ -115,12 +115,18 @@ cardsContainer.innerHTML = "";
     pokeCard.id = `card-${i+1}`;
     cardsContainer.append(pokeCard);
 
+    //Imagen Container
+
+    const imgContainer = document.createElement("div");
+    imgContainer.classList.add("img-container");
+    pokeCard.append(imgContainer);
+
     //Imagen
 
     const pokeImg = document.createElement("img");
     pokeImg.src = pokeArray[i].thumbnail;
     pokeImg.alt = `${pokeArray[i].name} picture`;
-    pokeCard.append(pokeImg);
+    imgContainer.append(pokeImg);
 
     //Number
 
@@ -139,7 +145,7 @@ cardsContainer.innerHTML = "";
     //Type Container
 
     const typeContainer = document.createElement("div");
-    typeContainer.classList.add("poke-card");
+    typeContainer.classList.add("type-container");
     pokeCard.append(typeContainer);
 
     //Type of Pokemon
@@ -148,10 +154,11 @@ cardsContainer.innerHTML = "";
             const pokeType = document.createElement("p");
             const typeName = pokeArray[i].type[j];              //Name of every pokemon class
             pokeType.classList.add(typeName.toLowerCase());
+            pokeType.classList.add("type-style");
             pokeType.textContent = typeName;
             typeContainer.append(pokeType);
     }
   }
 };
 
-pokedex(pokeArray); //I made it with the function. I just wanted try this way
+pokedex(pokeArray); //I made it without the function. I just wanted try this way
