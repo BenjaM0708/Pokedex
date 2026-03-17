@@ -219,7 +219,7 @@ cardsContainer.innerHTML = "";
 
     const pokeNumber = document.createElement("p");
     pokeNumber.classList.add("number");
-    pokeNumber.textContent = `Nº ${pokeArray[i].id}`;
+    pokeNumber.textContent = `00${pokeArray[i].id}`;
     frontCard.append(pokeNumber);
 
     //Name
