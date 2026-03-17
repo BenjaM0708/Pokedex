@@ -299,14 +299,24 @@ cardsContainer.innerHTML = "";
     featuresBox.append(pokeHabitat);
 
     //Click Event
-
+/*
     pokeCard.addEventListener("click", () => {
     pokeCard.classList.toggle("flip");
 });
-
+*/
   }
 };
 
 pokedex(pokeArray); //I made it without the function. I just wanted try this way
 
 //Click Event
+
+cardsContainer.addEventListener("click", (event) => {
+
+    const card = event.target.closest(".poke-card");
+
+    if (!card) return;
+
+    card.classList.toggle("flip");
+
+});
