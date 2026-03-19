@@ -1,10 +1,10 @@
 //Call all pokemon data
 
-const responseTest = await fetch(`https://pokeapi.co/api/v2/pokemon/`);
-const dataTest = await responseTest.json();
+const responseData = await fetch(`https://pokeapi.co/api/v2/pokemon/`);
+const dataTest = await responseData.json();
 console.log(dataTest);
-const arrayTest = [];
 
+const pokeArrayData = [];
 let dataTestWhile = "init";
 let rangePageNum = 0;
 
@@ -22,10 +22,10 @@ const pokemonDataResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${nam
 const pokemonData = await pokemonDataResponse.json();
 
 const weightPokemon = pokemonData.weight;
-arrayTest.push(`${namePokemon[0].toUpperCase()}${namePokemon.slice(1)} has a weight of ${weightPokemon}kg`);
+pokeArrayData.push(`${namePokemon[0].toUpperCase()}${namePokemon.slice(1)} has a weight of ${weightPokemon}kg`);
 }//Fin del for
 
 rangePageNum += 20;
 } while(dataTestWhile.next !== null);
 
-console.log(arrayTest);
+console.log(pokeArrayData);
