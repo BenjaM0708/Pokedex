@@ -129,7 +129,7 @@ div .pokelogo {
     height: max-content;
     padding: 3rem;
     margin: 1rem;
-    box-shadow: 3px 3px 7px rgba(81, 79, 79, 0.3);
+    box-shadow: 3px 3px 3px 3px rgba(81, 79, 79, 0.3);
 }
 
 #cards-container {
@@ -280,7 +280,7 @@ div .pokelogo {
     width: 215px;
     height: 330px;
     display: flex;
-    background: radial-gradient(rgb(203, 201, 196), rgb(95, 94, 92) 99%);
+    background: radial-gradient(rgb(203, 201, 196), rgb(111, 110, 109) 99%);
     border-radius: 5%;
     margin: 0.2rem;
     transition: 0.27s ease-in-out;
