@@ -4,16 +4,23 @@ const responseData = await fetch(`https://pokeapi.co/api/v2/pokemon/`);
 const dataTest = await responseData.json();
 console.log(dataTest);
 
+//Global Variables
+
 const pokeArrayData = [];
-let dataTestWhile = "init";
+let dataNextPage = "init";
 let rangePageNum = 0;
+
+// Next Pokemon Page
+
+const cardsContainer = document.getElementById("cards-container");
+cardsContainer.innerHTML = "";
 
 do {
 
 const responseTestWhile = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${rangePageNum}&limit=20`);
-dataTestWhile = await responseTestWhile.json();
+dataNextPage = await responseTestWhile.json();
 
-const pokemonArray = dataTestWhile.results;
+const pokemonArray = dataNextPage.results;
 
 for(let element of pokemonArray){
 const namePokemon = element.name;
@@ -26,6 +33,6 @@ pokeArrayData.push(`${namePokemon[0].toUpperCase()}${namePokemon.slice(1)} has a
 }//Fin del for
 
 rangePageNum += 20;
-} while(dataTestWhile.next !== null);
+} while(dataNextPage.next !== null);
 
 console.log(pokeArrayData);
