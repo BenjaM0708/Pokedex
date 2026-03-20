@@ -26,7 +26,7 @@ const nextPageButtom = async () => {
         const pokemonDataResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${namePokemon}`);
         const pokemonData = await pokemonDataResponse.json(); //Pokemon Data Container - This Object has all information about a specific pokemon
         
-        //Map for Abilities and Types
+        //Map for Abilities and Types - Both are arrays
 
         const abilitiesPokemonObject = pokemonData.abilities.map(
             abilityPokemon => abilityPokemon.ability.name
@@ -50,7 +50,8 @@ const nextPageButtom = async () => {
             //habitat: 
         };
 
-        pokeArrayData.push(`${namePokemon[0].toUpperCase()}${namePokemon.slice(1)} has a weight of ${weightPokemon}kg`);
+        //pokeArrayData.push(`${namePokemon[0].toUpperCase()}${namePokemon.slice(1)} has a weight of ${weightPokemon}kg`);
+        //After finish the object for every pokemon, I need to push the objects in an array that it'll be the base to build every card in when the user changes of page
 
     }
 rangePageNum += 20;
