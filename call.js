@@ -1,22 +1,29 @@
-//Call all pokemon data
+//Globals Variables
 
-const responseData = await fetch(`https://pokeapi.co/api/v2/pokemon/`);
-const dataTest = await responseData.json();
-console.log(dataTest);
-
-//Global Variables
-
+const cardsContainer = document.getElementById("cards-container");
+const nextButton = document.getElementById('next-button');
+const prevButton = document.getElementById('prev-button');
 const pokeArrayData = [];
 let rangePageNum = 0;
+let moveNextLimit = 'init';
+let movePrevLimit = null;
 
 //Pokemon Array Builder
 
-//const pokeArrayBuilder = async () => {  BORRAR SIGNOS DE COMENTARIO LUEGO!!!!!!!!!!!!!!
+if(rangePageNum == 0){
+    cardsContainer.innerHTML = "";
+    pokeArrayData = [];
+    pokeArrayBuilder();
+};
+
+const pokeArrayBuilder = async () => { 
 
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${rangePageNum}&limit=20`);
     //const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`); All pokemons in just one fetch
-    const dataNextPage = await response.json();
-    const pokemonBasicArray = dataNextPage.results;
+    const dataPage = await response.json();
+    const pokemonBasicArray = dataPage.results;
+    moveNextLimit = dataPage.next;
+    movePrevLimit = dataPage.previous;
     
     for(let element of pokemonBasicArray){
         
@@ -57,18 +64,30 @@ let rangePageNum = 0;
         }; console.log(objectPokemon);
 
         pokeArrayData.push(objectPokemon);
-      
+
+        nextButton.disabled = !moveNextLimit
+        prevButton.disabled = !movePrevLimit;
     }
-//}                          BORRAR SIGNOS DE COMENTARIO LUEGO!!!!!!!!!!!!!!
-console.log(pokeArrayData);
-//Next Pokemon Page Function
+}                         
 
-/*const cardsContainer = document.getElementById("cards-container");
-const nextButton = document.getElementById('next-button');
+//Next Pokemon Page EvenListener
 
-const nextPageButtom =  () => {
+nextButton.addEventListener('click', () => {
 
+    if (!moveNextLimit) return;
     rangePageNum += 20;
     cardsContainer.innerHTML = "";
-    //Call generateFunction - This function is using the array that "pokeArrayBuilder" does how a callback function
-}*/
+    pokeArrayData = [];
+    pokeArrayBuilder();
+});
+
+//Prev Pokemon Page EvenListener
+
+prevButton.addEventListener('click', () => {
+
+    if (!movePrevLimit) return;
+    rangePageNum -= 20;
+    cardsContainer.innerHTML = "";
+    pokeArrayData = [];
+    pokeArrayBuilder();
+});
