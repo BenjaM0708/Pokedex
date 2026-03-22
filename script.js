@@ -298,12 +298,6 @@ cardsContainer.innerHTML = "";
     pokeHabitat.textContent = `Habitat: ${pokeArray[i].habitat}`;
     featuresBox.append(pokeHabitat);
 
-    //Click Event
-/*
-    pokeCard.addEventListener("click", () => {
-    pokeCard.classList.toggle("flip");
-});
-*/
   }
 };
 
