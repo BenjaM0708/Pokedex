@@ -3,18 +3,13 @@
 const cardsContainer = document.getElementById("cards-container");
 const nextButton = document.getElementById('next-button');
 const prevButton = document.getElementById('prev-button');
-const pokeArrayData = [];
+let pokeArrayData = []; // If pokeArrayData.length is a "conts" do: pokeArrayData.length = 0 
 let rangePageNum = 0;
+cardsContainer.innerHTML = "";
 let moveNextLimit = 'init';
 let movePrevLimit = null;
 
 //Pokemon Array Builder
-
-if(rangePageNum == 0){
-    cardsContainer.innerHTML = "";
-    pokeArrayData = [];
-    pokeArrayBuilder();
-};
 
 const pokeArrayBuilder = async () => { 
 
@@ -45,7 +40,7 @@ const pokeArrayBuilder = async () => {
         const pokemonSpeciesResponse = await fetch(pokemonData.species.url);
         const pokemonSpeciesArray = await pokemonSpeciesResponse.json(); // Endpoint to pokemon-species
 
-        const pokeHabitat = pokemonSpeciesArray.habitat.name ? `${pokemonSpeciesArray.habitat.name[0].toUpperCase()}${pokemonSpeciesArray.habitat.name.slice(1)}` : `Unknown`;
+        const pokeHabitat = pokemonSpeciesArray.habitat ? `${pokemonSpeciesArray.habitat.name[0].toUpperCase()}${pokemonSpeciesArray.habitat.name.slice(1)}` : `Unknown`;
         const pokeDescription = pokemonSpeciesArray.flavor_text_entries.find(description => description.language.name === "en" );
         const clearDescription =pokeDescription.flavor_text.replace(/[\n\f\r\s+]/g, " ").replace(/pokémon/gi, "pokemon").trim();
   
@@ -64,11 +59,12 @@ const pokeArrayBuilder = async () => {
         }; console.log(objectPokemon);
 
         pokeArrayData.push(objectPokemon);
-
-        nextButton.disabled = !moveNextLimit
-        prevButton.disabled = !movePrevLimit;
     }
+    nextButton.disabled = !moveNextLimit
+    prevButton.disabled = !movePrevLimit;
 }                         
+
+await pokeArrayBuilder();
 
 //Next Pokemon Page EvenListener
 
