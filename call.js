@@ -33,6 +33,15 @@ let rangePageNum = 0;
             typePokemon => `${typePokemon.type.name[0].toUpperCase()}${typePokemon.type.name.slice(1)}`
         );
 
+        //Habitat and Description 
+
+        const pokemonSpeciesResponse = await fetch(pokemonData.species.url);
+        const pokemonSpeciesArray = await pokemonSpeciesResponse.json(); // Endpoint to pokemon-species
+
+        const pokeHabitat = pokemonSpeciesArray.habitat.name ? `${pokemonSpeciesArray.habitat.name[0].toUpperCase()}${pokemonSpeciesArray.habitat.name.slice(1)}` : `Unknown`;
+        const pokeDescription = pokemonSpeciesArray.flavor_text_entries.find(description => description.language.name === "en" );
+        const clearDescription =pokeDescription.flavor_text.replace(/[\n\f\r\s+]/g, " ").replace(/pokémon/gi, "pokemon").trim();
+  
         // Object Construction
 
         const objectPokemon = {
@@ -40,11 +49,11 @@ let rangePageNum = 0;
             id: pokemonData.id, 
             name: `${pokemonData.name[0].toUpperCase()}${pokemonData.name.slice(1)}`, 
             type: typesPokemonArray,
-            //description: 'A tough rock-bodied Pokémon that releases toxic minerals from its body when threatened.',
+            description: clearDescription,
             height: `${pokemonData.height} m`,
             weight: `${pokemonData.weight} kg`,
             ability: abilitiesPokemonArray,
-            //habitat: 
+            habitat: pokeHabitat
         }; console.log(objectPokemon);
 
         //pokeArrayData.push(`${namePokemon[0].toUpperCase()}${namePokemon.slice(1)} has a weight of ${weightPokemon}kg`);
